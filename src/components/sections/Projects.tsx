@@ -12,7 +12,7 @@ const projects = [
     {
         title: "Appmaker",
         description: "A no-code platform for building mobile apps. Integrated Ideabiz OTP-less payment, Google Analytics funnel tracking, and Datadog RUM.",
-        tags: ["MongoDB", "Sails.js", "Angular", "Cordova"],
+        tags: ["MongoDB", "Sails.js", "Angular", "Cordova", "JavaScript", "TypeScript"],
         link: "https://appmaker.lk",
         image: "/images/project1.png",
         github: null,
@@ -20,15 +20,15 @@ const projects = [
     {
         title: "Otenro Pro",
         description: "AI-powered website builder. Features Google Gemini API integration for content generation, GrapesJS layouts, and AI image generation.",
-        tags: ["MongoDB", "Sails.js", "Angular", "Redis", "AI"],
-        link: "https://otenro.com",
+        tags: ["MongoDB", "Sails.js", "Angular", "Redis", "AI", "JavaScript", "TypeScript"],
+        link: "https://pro.otenro.com/app/login",
         image: "/images/project2.png",
         github: null,
     },
     {
         title: "Telegram Sub Manager",
         description: "Automated Telegram subscription management system with paid subscription logic and full backend automation.",
-        tags: ["MongoDB", "Sails.js", "Angular", "Telegram API"],
+        tags: ["MongoDB", "Sails.js", "Angular", "Telegram API", "JavaScript", "TypeScript"],
         link: "#",
         image: "/images/project3.png",
         github: null,
@@ -36,7 +36,7 @@ const projects = [
     {
         title: "Appmaker Spark",
         description: "AI landing-page generator frontend. Implemented dynamic content rendering, live preview, and Gemini + OpenAI integration.",
-        tags: ["MongoDB", "Sails.js", "Angular", "AI"],
+        tags: ["MongoDB", "Sails.js", "Angular", "AI", "JavaScript", "TypeScript"],
         link: "https://ai.appmaker.lk",
         image: "/images/project1.png",
         github: null,

@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge"
 const skills = {
     "Frontend Development": [
         "Angular (Modern + AngularJS)", "React.js", "Next.js", "TypeScript", "JavaScript",
-        "HTML5", "CSS3", "Responsive Design", "GrapesJS", "Shadcn"
+        "HTML5", "CSS3", "Responsive Design", "GrapesJS", "Shadcn", "TailwindCSS"
     ],
     "Backend Development": [
         "Node.js", "Sails.js (MVC)", "Express.js", "RESTful API Design",
