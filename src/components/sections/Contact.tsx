@@ -1,13 +1,47 @@
 "use client"
 
+import { useState } from "react"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Mail, Phone, MapPin } from "lucide-react"
+import emailjs from '@emailjs/browser'
+import { toast } from "sonner"
 
 export function Contact() {
+    const [isSubmitting, setIsSubmitting] = useState(false)
+
+    const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        setIsSubmitting(true)
+
+        // REPLACE THESE WITH YOUR ACTUAL EMAILJS SERVICE ID, TEMPLATE ID, AND PUBLIC KEY
+        // Sign up at https://www.emailjs.com/
+        const SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || ''
+        const TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || ''
+        const PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || ''
+
+        const form = e.currentTarget
+
+        emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, form, PUBLIC_KEY)
+            .then((result) => {
+                toast.success("Message sent successfully!", {
+                    description: "I'll get back to you as soon as possible.",
+                })
+                form.reset()
+            }, (error) => {
+                toast.error("Failed to send message.", {
+                    description: "Please try again later or contact me directly via email.",
+                })
+                console.error(error.text)
+            })
+            .finally(() => {
+                setIsSubmitting(false)
+            })
+    }
+
     return (
         <section id="contact" className="py-20">
             <div className="container px-4 md:px-6 mx-auto max-w-7xl">
@@ -69,20 +103,22 @@ export function Contact() {
                                 </CardDescription>
                             </CardHeader>
                             <CardContent>
-                                <form className="grid gap-4">
+                                <form className="grid gap-4" onSubmit={sendEmail}>
                                     <div className="grid gap-2">
                                         <label htmlFor="name" className="text-sm font-medium">Name</label>
-                                        <Input id="name" placeholder="Your Name" />
+                                        <Input id="name" name="user_name" placeholder="Your Name" required disabled={isSubmitting} />
                                     </div>
                                     <div className="grid gap-2">
                                         <label htmlFor="email" className="text-sm font-medium">Email</label>
-                                        <Input id="email" type="email" placeholder="you@example.com" />
+                                        <Input id="email" name="user_email" type="email" placeholder="you@example.com" required disabled={isSubmitting} />
                                     </div>
                                     <div className="grid gap-2">
                                         <label htmlFor="message" className="text-sm font-medium">Message</label>
-                                        <Textarea id="message" placeholder="How can I help you?" />
+                                        <Textarea id="message" name="message" placeholder="How can I help you?" required disabled={isSubmitting} />
                                     </div>
-                                    <Button type="submit" className="w-full">Send Message</Button>
+                                    <Button type="submit" className="w-full" disabled={isSubmitting}>
+                                        {isSubmitting ? "Sending..." : "Send Message"}
+                                    </Button>
                                 </form>
                             </CardContent>
                         </Card>
